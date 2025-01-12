@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+.navbar {
+  background-color: #4B0082;
+  width: 100%;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.navbar-logo {
+  flex-shrink: 0;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  
+  width: 170px;
+}
+
+/* Desktop Menu */
+.navbar-menu-desktop {
+  display: none;
+}
+
+.menu-items {
+  display: flex;
+  align-items: baseline;
+  margin-left: 2.5rem;
+  gap: 2rem;
+}
+
+.menu-link {
+  color: #FFFFFF;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.menu-link:hover,
+.menu-link.active {
+  color: #FFD700;
+}
+
+/* Mobile Menu Button */
+.navbar-mobile-button {
+  display: block;
+}
+
+.mobile-menu-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  color: #FFFFFF;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.mobile-menu-button:hover {
+  color: #FFD700;
+}
+
+.menu-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Mobile Menu */
+.navbar-mobile {
+  display: none;
+  padding: 0.5rem;
+}
+
+.navbar-mobile.open {
+  display: block;
+}
+
+.mobile-menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.mobile-menu-link {
+  color: #FFFFFF;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  transition: color 0.3s ease;
+  display: block;
+}
+
+.mobile-menu-link:hover,
+.mobile-menu-link.active {
+  color: #FFD700;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+  .navbar-menu-desktop {
+    display: block;
+  }
+
+  .navbar-mobile-button {
+    display: none;
+  }
+
+  .navbar-mobile {
+    display: none !important;
+  }
+}
+
