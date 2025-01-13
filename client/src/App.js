@@ -5,6 +5,7 @@ import Navbar from "./components/navbar";
 import OurStory from "./components/ourstory";
 import Portfolio from "./components/portfolio";
 import Services from "./components/services";
+import MeetOurTeam from "./components/team";
 
 
 
@@ -16,6 +17,7 @@ function App() {
     <HeroSection/>
     <HowWeWork/>
     <OurStory/>
+    <MeetOurTeam/>
     <Services/>
     <Portfolio/>
     <Features/>
