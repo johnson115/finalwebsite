@@ -1,0 +1,34 @@
+.background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:85vh;
+    background-size: cover;
+    background-position: center;
+    
+  }
+  
+  .form {
+    width: 400px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    background-color:#e681d0 ;
+  }
+  
+.form img{
+    width:auto;
+    height: 90px;
+    margin-bottom:20px;
+}
+  
+  .btns {
+    display: flex;
+    float: right;
+  }
+
+  .btns button{
+    margin-right:10px;
+  }
