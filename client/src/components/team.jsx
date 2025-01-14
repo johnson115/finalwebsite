@@ -13,6 +13,7 @@ const teamMembers = [
     link: 'https://www.facebook.com/ihebrayen.tounssy.14',
     socialIcon: <Linkedin />,
     socialLink: '',
+    image:require("../media/iheb.jpg")
   },
   {
     name: 'Mahmoud Sassi',
@@ -20,6 +21,7 @@ const teamMembers = [
     link: 'https://mahmoudsassi.digitalmoveup.tn/',
     socialIcon: <Linkedin />,
     socialLink: '',
+    image:require("../media/mahmoud.jpeg")
   },
   {
     name: 'Ghassen Khedhry',
@@ -27,6 +29,7 @@ const teamMembers = [
     link: 'https://www.facebook.com/profile.php?id=100094531637741',
     socialIcon: <Linkedin />,
     socialLink: '',
+    image:require("../media/ghass.png")
   },
   {
     name: 'Amen Allah Naamen',
@@ -34,6 +37,7 @@ const teamMembers = [
     link: 'https://amennoomen.com/',
     socialIcon: <Linkedin />,
     socialLink: '',
+    image:require("../media/me.jpeg")
   },
   {
     name: 'Hazem Saidani',
@@ -41,6 +45,7 @@ const teamMembers = [
     link: 'https://www.hazemsaidani.tn/',
     socialIcon: <Linkedin />,
     socialLink: '',
+    image:require("../media/hazem.jpeg")
   },
   {
     name: 'Mohamed Lahbib Rahal',
@@ -48,6 +53,7 @@ const teamMembers = [
     link: '',
     socialIcon: <Behance />,
     socialLink: '',
+    image:require("../media/ra7al.png")
   },
   {
     name: 'Brinis Prod',
@@ -55,6 +61,7 @@ const teamMembers = [
     link: '',
     socialIcon: <Linkedin />,
     socialLink: '',
+    image:require("../media/brenis.jpg")
   },
   {
     name: 'Olyzonu Prod',
@@ -62,6 +69,7 @@ const teamMembers = [
     link: '',
     socialIcon: <Linkedin />,
     socialLink: '',
+    image:require("../media/olyzonu.jpg")
   },
 ];
 
@@ -96,6 +104,7 @@ const MeetOurTeam = () => {
 
   return (
     <section className="meet-our-team">
+      <div className="waving-hands"></div>
       <div className="waving-bg"></div>
       <div className="container">
         <motion.h2
@@ -115,8 +124,9 @@ const MeetOurTeam = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <div className="member-image">
-                {/* Placeholder for member image */}
-                <div className="image-placeholder"></div>
+                {member.image !== '' ? (<img src={member.image} alt={member.name} width="200px"  /> ):(<div className="image-placeholder"></div>) }
+                
+                  
               </div>
               <h3>{member.name}</h3>
               <p>{member.role}</p>

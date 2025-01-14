@@ -1,0 +1,86 @@
+.testimonial-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .testimonial-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #4B0082, #00CBA9);
+    color: #fff;
+  }
+  
+  .testimonial-section h2 {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+  }
+  
+  .testimonial-card {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+  }
+  
+  .testimonial-card h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #ffd700;
+  }
+  
+  .testimonial-card p {
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .rating {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+  }
+  
+  .star {
+    color: #ffd700;
+  }
+  
+  /* Custom styles for react-slick */
+  .slick-dots li button:before {
+    color: #fff;
+  }
+  
+  .slick-dots li.slick-active button:before {
+    color: #ffd700;
+  }
+  
+  @media (max-width: 768px) {
+    .testimonial-section {
+      padding: 60px 0;
+    }
+  
+    .testimonial-section h2 {
+      font-size: 28px;
+    }
+  
+    .testimonial-card {
+      padding: 30px;
+    }
+  
+    .testimonial-card h3 {
+      font-size: 20px;
+    }
+  
+    .testimonial-card p {
+      font-size: 16px;
+    }
+  }
+  
+  
