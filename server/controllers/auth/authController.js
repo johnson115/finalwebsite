@@ -1,7 +1,7 @@
 const user = require("../../models/usermodel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
+require("dotenv").config();
 
 
 const login = async (req, res) => {
@@ -15,7 +15,6 @@ const login = async (req, res) => {
         password: hashedPassword,
       });
       const token = admin.generateAuthToken();
-      console.log({token});
       return res.status(200).json({ token, msj: "User Created Succesfuly, You will be redirected to Amdin page !" });
     } else {
       const pass = await bcrypt.compare(password, admin.password);
@@ -65,22 +64,28 @@ const changePass = async (req, res) => {
 };
 
 const verify = async (req, res) => {
-  const token = req.body.token;
+  const { token } = req.body;
+
+  if (!token) {
+    return res.status(400).json({ err: "Authentication token missing" });
+  }
+
   try {
-    if (token) {
-      jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
-        if (err) {
-          res.status(400).json({ err: "user non authentifier" });
-        } else {
-          res.status(200).json({ msj: "user authentifier" });
-        }
-      });
-    } else {
-      res.status(400).json({ err: "user non authentifier" });
+   
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    const admin = await user.findById(decodedToken._id);
+    if (!admin) {
+      return res.status(404).json({ err: "User not found" });
     }
-  } catch (error) {
-    res.status(400).json({ err: error });
+    res.status(200).json({ msj: "User authenticated", user: admin });
+  } catch (err) {
+    if (err.name === "TokenExpiredError") {
+      return res.status(401).json({ err: "Token expired" });
+    } else if (err.name === "JsonWebTokenError") {
+      return res.status(401).json({ err: "Invalid token" });
+    } else {
+      return res.status(500).json({ err: "Server error during token verification" });
+    }
   }
 };
-
 module.exports = { login, changePass, verify };

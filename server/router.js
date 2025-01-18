@@ -5,6 +5,6 @@ const user = require("./controllers/auth/authController");
 
 router.route("/").get(blog.tesst);
 router.route("/login").post(user.login);
-
+router.route("/verif").post(user.verify);
 
 module.exports = router;
