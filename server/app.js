@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
 const router = require("./router");
+const multer = require("multer")
+const upload = multer({dest:"/upload"})
 const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config();

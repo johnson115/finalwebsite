@@ -23,7 +23,7 @@ const login = async (req, res) => {
         const token = admin.generateAuthToken();
         return res.status(200).json({ token, msj: "Connected, You will be redirected to Amdin page !" });
       } else {
-        return res.status(400).json({ err: "Username or password incorrect" });
+        return res.status(400).json({ err: "Something went wrong. Please try again." });
       }
     }
   } catch (error) {

@@ -29,7 +29,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const resp = await Post("/login", formData);
-      if (resp.status === 200) {
+      if (resp.status === 200 && resp.data.msj) {
         Cookies.set("token", resp.data.token, { expires: 1 });
         setFormData({ username: "", password: "" });
         Setsuccmsj(true);
@@ -45,7 +45,7 @@ const Login = () => {
       } else {
         setFormData({ username: "", password: "" });
         Setsuccmsj(false);
-        Settxt("Something went wrong. Please try again.");
+        Settxt(resp.data.err);
         Seterrmsj(true);
         setTimeout(() => {
           Seterrmsj(false);
@@ -77,6 +77,7 @@ const Login = () => {
             placeholder="User Name or email"
             variant="standard"
             type="text"
+            color="secondary"
             value={formData.username}
             onChange={change}
           />
@@ -87,6 +88,7 @@ const Login = () => {
             placeholder="Password"
             variant="standard"
             type="password"
+            color="secondary"
             value={formData.password}
             onChange={change}
           />
@@ -96,8 +98,8 @@ const Login = () => {
           <br />
 
           <div className="btns">
-            <Button variant="outlined">Cancel</Button>
-            <Button type="submit" variant="contained" color="primary">
+            <Button variant="outlined" color="secondary">Cancel</Button>
+            <Button type="submit" variant="contained" color="secondary">
               Login
             </Button>
           </div>
