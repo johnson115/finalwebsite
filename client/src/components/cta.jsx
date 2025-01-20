@@ -1,8 +1,23 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import '../styles/cta.css';
+import React from "react";
+import { motion } from "framer-motion";
+import "../styles/cta.css";
+import Click from "../common/routes/click";
 
 const CTA = () => {
+  const add = async (type, on) => {
+    try {
+      await Click("/add", {
+        type: type,
+        on: on,
+        nb: 1,
+      });
+
+      console.log("Click added successfully.");
+    } catch (error) {
+      console.error("Error adding visit:", error.message);
+    }
+  };
+
   return (
     <motion.div
       className="cta-container"
@@ -18,6 +33,9 @@ const CTA = () => {
         Ready to transform your business? Let's work together.
       </motion.h3>
       <motion.button
+        onClick={() => {
+          add("Click", "Get Started Click");
+        }}
         className="cta-button"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
@@ -32,4 +50,3 @@ const CTA = () => {
 };
 
 export default CTA;
-

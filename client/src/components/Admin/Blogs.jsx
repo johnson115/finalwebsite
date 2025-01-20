@@ -121,11 +121,11 @@ const Blogs = () => {
         ...formdata,
         image: imageUrl,
       });
-
+      
       if (response.status === 200 && response.data.msj) {
         setblogs((prevBlogs) => [
           ...prevBlogs,
-          { ...formdata, image: imageUrl, _id: response.data._id },
+          { ...formdata, image: imageUrl, _id: response.data.blog._id },
         ]);
 
         cleatForm();

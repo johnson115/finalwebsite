@@ -1,16 +1,48 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { Globe, Search, Share2, Palette, DollarSign, FileText } from 'lucide-react';
-import '../styles/services.css';
+import React from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import {
+  Globe,
+  Search,
+  Share2,
+  Palette,
+  DollarSign,
+  FileText,
+} from "lucide-react";
+import "../styles/services.css";
+import Click from "../common/routes/click";
 
 const services = [
-  { icon: <Globe />, title: 'Web Development', description: 'Custom websites built to elevate your brand.' },
-  { icon: <Search />, title: 'SEO Optimization', description: 'Rank higher and reach your audience organically.' },
-  { icon: <Share2 />, title: 'Social Media Marketing', description: 'Boost your online presence and engagement.' },
-  { icon: <Palette />, title: 'Branding', description: 'Stand out with compelling visuals and a unique identity.' },
-  { icon: <DollarSign />, title: 'PPC Campaigns', description: 'Get measurable results with paid ads.' },
-  { icon: <FileText />, title: 'Content Creation', description: 'Engaging content to drive conversions.' },
+  {
+    icon: <Globe />,
+    title: "Web Development",
+    description: "Custom websites built to elevate your brand.",
+  },
+  {
+    icon: <Search />,
+    title: "SEO Optimization",
+    description: "Rank higher and reach your audience organically.",
+  },
+  {
+    icon: <Share2 />,
+    title: "Social Media Marketing",
+    description: "Boost your online presence and engagement.",
+  },
+  {
+    icon: <Palette />,
+    title: "Branding",
+    description: "Stand out with compelling visuals and a unique identity.",
+  },
+  {
+    icon: <DollarSign />,
+    title: "PPC Campaigns",
+    description: "Get measurable results with paid ads.",
+  },
+  {
+    icon: <FileText />,
+    title: "Content Creation",
+    description: "Engaging content to drive conversions.",
+  },
 ];
 
 const ServiceCard = ({ icon, title, description, index }) => {
@@ -41,6 +73,20 @@ const Services = () => {
     threshold: 0.1,
   });
 
+  const add = async (type, on) => {
+    try {
+      await Click("/add", {
+        type: type,
+        on: on,
+        nb: 1,
+      });
+
+      console.log("Click added successfully.");
+    } catch (error) {
+      console.error("Error adding visit:", error.message);
+    }
+  };
+
   return (
     <section className="services-section">
       <div className="container">
@@ -66,6 +112,9 @@ const Services = () => {
           <h3>Ready to elevate your digital presence?</h3>
           <motion.button
             className="cta-button"
+            onClick={() => {
+              add("Click", "Get Started Click");
+            }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -78,4 +127,3 @@ const Services = () => {
 };
 
 export default Services;
-

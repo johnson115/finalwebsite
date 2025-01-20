@@ -123,7 +123,7 @@ const Team = () => {
       if (response.status === 200 && response.data.msj) {
         setteam((prevBlogs) => [
           ...prevBlogs,
-          { ...formdata, image: imageUrl, _id: response.data._id },
+          { ...formdata, image: imageUrl, _id: response.data.team._id },
         ]);
 
         cleatForm();
@@ -134,6 +134,7 @@ const Team = () => {
           Setsuccalert(false);
           Setmsj("");
         }, 1200);
+        return
       }
     } catch (error) {
       cleatForm();

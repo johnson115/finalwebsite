@@ -1,9 +1,28 @@
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import '../styles/navbar.css'
+import Click from '../common/routes/click';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const add = async (type,on) => {
+    try {
+      await Click("/add", {
+        type: type,
+        on: on,
+        nb: 1,
+      });
+
+      console.log("Click added successfully.");
+    } catch (error) {
+      console.error("Error adding visit:", error.message);
+    }
+  };
+
+
+
+
 
   return (
     <nav className="navbar">
@@ -20,19 +39,18 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Desktop Menu */}
           <div className="navbar-menu-desktop">
             <div className="menu-items">
-              <a href="#" className="menu-link active">Home</a>
-              <a href="#" className="menu-link">About</a>
-              <a href="#" className="menu-link">Service</a>
-              <a href="#" className="menu-link">Project</a>
-              <a href="#" className="menu-link">Pages +</a>
-              <a href="#" className="menu-link">Contact</a>
+              <a href="/" className="menu-link active">Home</a>
+              <a href="/" className="menu-link" onClick={()=>{add("Click" , "About Click")}}>About</a>
+              <a href="/" className="menu-link" onClick={()=>{add("Click" , "Service Click")}}>Service</a>
+              <a href="/" className="menu-link" onClick={()=>{add("Click" , "Project Click")}}>Project</a>
+              <a href="/" className="menu-link">Pages +</a>
+              <a href="/" className="menu-link" onClick={()=>{add("Click" , "Contact Click")}}>Contact</a>
             </div>
           </div>
 
-          {/* Mobile menu button */}
+   
           <div className="navbar-mobile-button">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -52,12 +70,12 @@ export default function Navbar() {
       {/* Mobile menu */}
       <div className={`navbar-mobile ${isMenuOpen ? 'open' : ''}`}>
         <div className="mobile-menu-items">
-          <a href="#" className="mobile-menu-link active">Home</a>
-          <a href="#" className="mobile-menu-link">About</a>
-          <a href="#" className="mobile-menu-link">Service</a>
-          <a href="#" className="mobile-menu-link">Project</a>
-          <a href="#" className="mobile-menu-link">Pages +</a>
-          <a href="#" className="mobile-menu-link">Contact</a>
+          <a href="/" className="mobile-menu-link active">Home</a>
+          <a href="/" className="mobile-menu-link">About</a>
+          <a href="/" className="mobile-menu-link">Service</a>
+          <a href="/" className="mobile-menu-link">Project</a>
+          <a href="/" className="mobile-menu-link">Pages +</a>
+          <a href="/" className="mobile-menu-link">Contact</a>
         </div>
       </div>
     </nav>

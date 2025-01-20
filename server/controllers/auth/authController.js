@@ -3,7 +3,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-
 const login = async (req, res) => {
   const { username, password } = req.body;
   try {
@@ -15,15 +14,27 @@ const login = async (req, res) => {
         password: hashedPassword,
       });
       const token = admin.generateAuthToken();
-      return res.status(200).json({ token, msj: "User Created Succesfuly, You will be redirected to Amdin page !" });
+      return res
+        .status(200)
+        .json({
+          token,
+          msj: "User Created Succesfuly, You will be redirected to Amdin page !",
+        });
     } else {
       const pass = await bcrypt.compare(password, admin.password);
       const verifemail = admin.username === username;
       if (pass && verifemail) {
         const token = admin.generateAuthToken();
-        return res.status(200).json({ token, msj: "Connected, You will be redirected to Amdin page !" });
+        return res
+          .status(200)
+          .json({
+            token,
+            msj: "Connected, You will be redirected to Amdin page !",
+          });
       } else {
-        return res.status(400).json({ err: "Something went wrong. Please try again." });
+        return res
+          .status(400)
+          .json({ err: "Something went wrong. Please try again." });
       }
     }
   } catch (error) {
@@ -31,19 +42,16 @@ const login = async (req, res) => {
   }
 };
 
-
-
-
 const changePass = async (req, res) => {
-  const { actualPass, newPass } = req.body;
+  const { actual, neww } = req.body;
   try {
     const admin = await user.findOne({});
     if (!admin) {
       return res.status(400).json({ err: "No User Found" });
     }
-    const pass = await bcrypt.compare(actualPass, admin.password);
+    const pass = await bcrypt.compare(actual, admin.password);
     if (pass) {
-      const hashedPassword = await bcrypt.hash(newPass, 10);
+      const hashedPassword = await bcrypt.hash(neww, 10);
       const updateadmin = await user.findByIdAndUpdate(
         admin._id,
         { password: hashedPassword },
@@ -52,9 +60,9 @@ const changePass = async (req, res) => {
       if (!updateadmin) {
         return res.status(404).json({ err: "No Username found" });
       }
-      return res.status(200).json({ msg: "password updated" });
+      return res.status(200).json({ msj: "password updated" });
     } else {
-      return res.status(400).json({ err: "incorrect password" });
+      return res.status(200).json({ err: "incorrect password" });
     }
   } catch (error) {
     return res
@@ -71,7 +79,6 @@ const verify = async (req, res) => {
   }
 
   try {
-   
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const admin = await user.findById(decodedToken._id);
     if (!admin) {
@@ -84,7 +91,9 @@ const verify = async (req, res) => {
     } else if (err.name === "JsonWebTokenError") {
       return res.status(401).json({ err: "Invalid token" });
     } else {
-      return res.status(500).json({ err: "Server error during token verification" });
+      return res
+        .status(500)
+        .json({ err: "Server error during token verification" });
     }
   }
 };

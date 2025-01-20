@@ -1,97 +1,81 @@
-import React from 'react';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import CardActionArea from '@mui/material/CardActionArea';
+import React, { useEffect, useState } from "react";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import CardActionArea from "@mui/material/CardActionArea";
+import Post from "../../common/routes/post";
 
 
 
-const cards = [
-    {
-      id: 1,
-      value: '2154',
-      description: 'Main page views',
-    },
-    {
-      id: 2,
-      value: '455',
-      description: 'Project Click',
-    },
-    {
-      id: 3,
-      value: '641',
-      description: 'Servise Click',
-    },
-    {
-        id: 4,
-        value: '345',
-        description: 'About Us Click',
-      },
-      {
-        id: 5,
-        value: '295',
-        description: 'Contact Click',
-      },
-      {
-        id: 6,
-        value: '641',
-        description: 'Team View Click',
-      },
-      
-      {
-        id: 7,
-        value: '548',
-        description: 'Get started Click',
-      },
-  ];
 
 const Dashboards = () => {
-    const [selectedCard, setSelectedCard] = React.useState(0);
-    return (
-<div>
+  const [selectedCard, setSelectedCard] = React.useState(0);
+  const [stats, setstats] = useState([]);
+
+  const getstats = async () => {
+    try {
+      const response = await Post("/getstats", {
+        verif: true,
+      });
+      if (response.data) {
+        setstats(response.data);
+      } else {
+        console.log("No Stats available.");
+        setstats([]);
+      }
+    } catch (err) {
+      console.error("Error fetching data:", err);
+    }
+  };
+
+  useEffect(() => {
+    getstats();
+  }, []);
+
+  return (
     <div>
-            <Box
+      <div>
+        <Box
           sx={{
-            width: '100%',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(min(200px, 100%), 1fr))',
+            width: "100%",
+            display: "grid",
+            gridTemplateColumns:
+              "repeat(auto-fill, minmax(min(200px, 100%), 1fr))",
             gap: 2,
           }}
         >
-          {cards.map((card, index) => (
-            <Card sx={{backgroundColor:"#E4B1D9"}}>
+          {stats.map((card, index) => (
+            <Card sx={{ backgroundColor: "#E4B1D9" }} key={index}>
               <CardActionArea
                 onClick={() => setSelectedCard(index)}
-                data-active={selectedCard === index ? '' : undefined}
+                data-active={selectedCard === index ? "" : undefined}
                 sx={{
-                  height: '100%',
-                  '&[data-active]': {
-                    backgroundColor: 'action.selected',
-                    '&:hover': {
-                      backgroundColor: 'action.selectedHover',
+                  height: "100%",
+                  "&[data-active]": {
+                    backgroundColor: "action.selected",
+                    "&:hover": {
+                      backgroundColor: "action.selectedHover",
                     },
                   },
                 }}
               >
-                <CardContent sx={{ height: '100%', textAlign:"center" }}>
+                <CardContent sx={{ height: "100%", textAlign: "center" }}>
                   <Typography variant="h5" component="div">
-                    {card.value}
+                    {card.nb}
                   </Typography>
                   <Typography variant="body1" color="text.secondary">
-                    <b>{card.description}</b>
+                    <b>{card.on}</b>
                   </Typography>
                 </CardContent>
               </CardActionArea>
             </Card>
           ))}
         </Box>
-        </div>
-        <div>
-        </div>
-        
-</div>
-    );
-}
+      </div>
+      <div></div>
+    </div>
+  );
+};
 
 export default Dashboards;

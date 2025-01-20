@@ -5,6 +5,7 @@ import { Linkedin, DribbbleIcon as Behance } from 'lucide-react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../styles/team.css';
+import Click from '../common/routes/click';
 
 const teamMembers = [
   {
@@ -74,6 +75,26 @@ const teamMembers = [
 ];
 
 const MeetOurTeam = () => {
+
+
+
+  const add = async (type,on) => {
+    try {
+      await Click("/add", {
+        type: type,
+        on: on,
+        nb: 1,
+      });
+
+      console.log("Click added successfully.");
+    } catch (error) {
+      console.error("Error adding visit:", error.message);
+    }
+  };
+
+
+
+
   const settings = {
     dots: true,
     infinite: true,
@@ -132,7 +153,7 @@ const MeetOurTeam = () => {
               <p>{member.role}</p>
               <div className="member-links">
                 {member.link && (
-                  <a href={member.link} target="_blank" rel="noopener noreferrer" className="profile-link">
+                  <a href={member.link} onClick={()=>{add("Click","Team Profile Click")}} target="_blank" rel="noopener noreferrer" className="profile-link">
                     View Profile
                   </a>
                 )}

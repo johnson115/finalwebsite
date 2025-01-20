@@ -1,40 +1,47 @@
-import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { Lightbulb, Rocket, Zap, Users, TrendingUp, Globe } from 'lucide-react';
-import '../styles/features.css';
+import React from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { Lightbulb, Rocket, Zap, Users, TrendingUp, Globe } from "lucide-react";
+import "../styles/features.css";
+import Click from "../common/routes/click";
 
 const features = [
   {
     icon: <Lightbulb />,
-    title: 'Innovative Solutions',
-    description: 'We bring fresh ideas to the table, helping you stand out in the competitive digital space.'
+    title: "Innovative Solutions",
+    description:
+      "We bring fresh ideas to the table, helping you stand out in the competitive digital space.",
   },
   {
     icon: <Rocket />,
-    title: 'Proven Expertise',
-    description: 'With over 2 years of experience, we\'ve helped businesses thrive through tailored strategies.'
+    title: "Proven Expertise",
+    description:
+      "With over 2 years of experience, we've helped businesses thrive through tailored strategies.",
   },
   {
     icon: <Zap />,
-    title: 'Fast Turnaround',
-    description: 'Our efficient workflows ensure your project is completed on time, every time.'
+    title: "Fast Turnaround",
+    description:
+      "Our efficient workflows ensure your project is completed on time, every time.",
   },
   {
     icon: <Users />,
-    title: 'Client-Centric Focus',
-    description: 'We value collaboration and keep you informed at every step of the process.'
+    title: "Client-Centric Focus",
+    description:
+      "We value collaboration and keep you informed at every step of the process.",
   },
   {
     icon: <TrendingUp />,
-    title: 'Results You Can Measure',
-    description: 'We prioritize ROI, delivering measurable outcomes that drive your success.'
+    title: "Results You Can Measure",
+    description:
+      "We prioritize ROI, delivering measurable outcomes that drive your success.",
   },
   {
     icon: <Globe />,
-    title: 'Global Reach',
-    description: 'Our solutions connect you with audiences worldwide, expanding your business opportunities.'
-  }
+    title: "Global Reach",
+    description:
+      "Our solutions connect you with audiences worldwide, expanding your business opportunities.",
+  },
 ];
 
 const AnimatedBackground = () => {
@@ -44,21 +51,21 @@ const AnimatedBackground = () => {
         <motion.div
           key={i}
           className="floating-circle"
-          initial={{ 
+          initial={{
             x: Math.random() * window.innerWidth,
             y: Math.random() * window.innerHeight,
-            scale: Math.random() * 0.5 + 0.5
+            scale: Math.random() * 0.5 + 0.5,
           }}
           animate={{
             x: Math.random() * window.innerWidth,
             y: Math.random() * window.innerHeight,
-            scale: Math.random() * 0.5 + 0.5
+            scale: Math.random() * 0.5 + 0.5,
           }}
           transition={{
             duration: Math.random() * 10 + 10,
             repeat: Infinity,
             repeatType: "reverse",
-            ease: "linear"
+            ease: "linear",
           }}
         />
       ))}
@@ -69,7 +76,7 @@ const AnimatedBackground = () => {
 const FeatureCard = ({ icon, title, description, index }) => {
   const [ref, inView] = useInView({
     threshold: 0.2,
-    triggerOnce: true
+    triggerOnce: true,
   });
 
   return (
@@ -81,7 +88,7 @@ const FeatureCard = ({ icon, title, description, index }) => {
       transition={{ duration: 0.6, delay: index * 0.1 }}
       whileHover={{ scale: 1.05 }}
     >
-      <motion.div 
+      <motion.div
         className="icon-wrapper"
         whileHover={{ rotate: 360 }}
         transition={{ duration: 0.6 }}
@@ -97,34 +104,46 @@ const FeatureCard = ({ icon, title, description, index }) => {
 const Features = () => {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  
+  const add = async (type, on) => {
+    try {
+      await Click("/add", {
+        type: type,
+        on: on,
+        nb: 1,
+      });
+
+      console.log("Click added successfully.");
+    } catch (error) {
+      console.error("Error adding visit:", error.message);
+    }
+  };
   return (
     <section className="features-section">
       <AnimatedBackground />
-      <motion.div 
-        className="container"
-        style={{ y }}
-      >
+      <motion.div className="container" style={{ y }}>
         <div className="title-wrapper">
           <h2>
             <span className="highlight">What</span> Makes Us Different
           </h2>
         </div>
-        
+
         <div className="features-grid">
           {features.map((feature, index) => (
             <FeatureCard key={index} {...feature} index={index} />
           ))}
         </div>
 
-        <motion.div 
+        <motion.div
           className="cta-section"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           <h3>Ready to Elevate Your Digital Presence?</h3>
-          <motion.button 
+          <motion.button
+            onClick={() => {
+              add("Click", "Get Started Click");
+            }}
             className="cta-button"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -138,4 +157,3 @@ const Features = () => {
 };
 
 export default Features;
-
