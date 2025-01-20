@@ -67,7 +67,7 @@ const Blogs = () => {
   const handleDelete = async (blogId) => {
     try {
       const response = await Delete(`/deleteblog`, blogId);
-  
+
       if (response.status === 200) {
         setblogs((prevBlogs) =>
           prevBlogs.filter((blog) => blog._id !== blogId)
@@ -140,7 +140,11 @@ const Blogs = () => {
     } catch (error) {
       cleatForm();
       Seterralert(true);
-      Setmsj(error);
+      Setmsj(
+        error.response?.data?.message ||
+          error.message ||
+          "error occured try again later"
+      );
 
       setTimeout(() => {
         Seterralert(false);
@@ -162,6 +166,13 @@ const Blogs = () => {
             mt: "20px",
           }}
         >
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ mb: 1, fontSize: "2rem" }}
+          >
+            Blogs
+          </Typography>
           <TextField
             sx={{ width: "80%", mt: "20px" }}
             label="Title"
@@ -291,6 +302,16 @@ const Blogs = () => {
                   }}
                 >
                   {blog.description}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="secondary"
+                  sx={{
+                    fontSize: "0.9rem",
+                    lineHeight: 1.4,
+                  }}
+                >
+                  Created At {new Date(blog.createdAt).toLocaleString()}
                 </Typography>
               </CardContent>
 
