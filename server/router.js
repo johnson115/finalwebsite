@@ -30,7 +30,7 @@ router.route("/addblog").post(upload.single("image"), blog.addblog);
 //stats routes
 router.route("/add").post(stat.add);
 router.route("/getstats").post(stat.getStats);
-
+router.route("/views").post(stat.dash);
 
 
 module.exports = router;

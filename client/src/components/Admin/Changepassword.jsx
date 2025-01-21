@@ -32,59 +32,46 @@ const Changepassword = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!formdata.actual || !formdata.neww || !formdata.confirm) {
-      Seterralert(true);
-      Setmsj("all fields are required");
-      setTimeout(() => {
-        Seterralert(false);
-        Setmsj("");
-      }, 1200);
+      showAlert("All fields are required", true);
       return;
     }
     if (formdata.neww !== formdata.confirm) {
-      Seterralert(true);
-      Setmsj("Confirm Pasword Incorrect");
-      setTimeout(() => {
-        Seterralert(false);
-        Setmsj("");
-        cleatForm();
-      }, 1200);
+      showAlert("Passwords do not match", true);
+      cleatForm();
       return;
     }
+  
     try {
-      const response = await Post("/change", {
-        formdata
-      });
+      const response = await Post("/change", { actual: formdata.actual, neww: formdata.neww });
+  
       if (response.status === 200 && response.data.msj) {
+        showAlert(response.data.msj, false);
         cleatForm();
-        Setsuccalert(true);
-        Setmsj(response.data.msj);
-
-        setTimeout(() => {
-          Setsuccalert(false);
-          Setmsj("");
-          return;
-        }, 1200);
       } else {
+        showAlert(response.data.err || "An error occurred", true);
         cleatForm();
-        Seterralert(true);
-        Setmsj("Incorrect Password");
-        setTimeout(() => {
-          Seterralert(false);
-          Setmsj("");
-        }, 1200);
-        return;
       }
     } catch (error) {
+      showAlert("An error occurred, please try again later", true);
       cleatForm();
-      Seterralert(true);
-      Setmsj("error occured try again later");
-      setTimeout(() => {
-        Seterralert(false);
-        Setmsj("");
-      }, 1200);
     }
+  };
+  
+  const showAlert = (message, isError) => {
+    if (isError) {
+      Seterralert(true);
+    } else {
+      Setsuccalert(true);
+    }
+    Setmsj(message);
+  
+    setTimeout(() => {
+      Seterralert(false);
+      Setsuccalert(false);
+      Setmsj("");
+    }, 1200);
   };
 
   return (

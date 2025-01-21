@@ -44,32 +44,35 @@ const login = async (req, res) => {
 
 const changePass = async (req, res) => {
   const { actual, neww } = req.body;
+  if (!actual || !neww) {
+    return res.status(400).json({ err: "Actual and new passwords are required" });
+  }
   try {
     const admin = await user.findOne({});
     if (!admin) {
-      return res.status(400).json({ err: "No User Found" });
+      return res.status(404).json({ err: "User not found" });
     }
-    const pass = await bcrypt.compare(actual, admin.password);
-    if (pass) {
-      const hashedPassword = await bcrypt.hash(neww, 10);
-      const updateadmin = await user.findByIdAndUpdate(
-        admin._id,
-        { password: hashedPassword },
-        { new: true, runValidators: true }
-      );
-      if (!updateadmin) {
-        return res.status(404).json({ err: "No Username found" });
-      }
-      return res.status(200).json({ msj: "password updated" });
-    } else {
-      return res.status(200).json({ err: "incorrect password" });
+    const isPasswordCorrect = await bcrypt.compare(actual, admin.password);
+    if (!isPasswordCorrect) {
+      return res.status(400).json({ err: "Incorrect current password" });
     }
+    const hashedPassword = await bcrypt.hash(neww, 10);
+    const updatedAdmin = await user.findByIdAndUpdate(
+      admin._id,
+      { password: hashedPassword },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedAdmin) {
+      return res.status(500).json({ err: "Failed to update password" });
+    }
+
+    return res.status(200).json({ msj: "Password updated successfully" });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ err: "Erreur serveur", details: error.message });
+    return res.status(500).json({ err: "Server error", details: error.message });
   }
 };
+
 
 const verify = async (req, res) => {
   const { token } = req.body;
