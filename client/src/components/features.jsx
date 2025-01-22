@@ -8,32 +8,32 @@ const features = [
   {
     icon: <Lightbulb />,
     title: 'Innovative Solutions',
-    description: 'We bring fresh ideas to the table, helping you stand out in the competitive digital space.'
+    description: 'Our forward-thinking digital strategies empower your brand to rise above the competition, delivering fresh ideas that drive lasting results.'
   },
   {
     icon: <Rocket />,
     title: 'Proven Expertise',
-    description: 'With over 2 years of experience, we\'ve helped businesses thrive through tailored strategies.'
+    description: 'With over 2 years of experience, we’ve mastered the art of crafting tailored solutions that help businesses achieve remarkable growth.'
   },
   {
     icon: <Zap />,
     title: 'Fast Turnaround',
-    description: 'Our efficient workflows ensure your project is completed on time, every time.'
+    description: 'Our streamlined workflows and efficient processes ensure your projects are delivered on time, without ever compromising on quality'
   },
   {
     icon: <Users />,
-    title: 'Client-Centric Focus',
-    description: 'We value collaboration and keep you informed at every step of the process.'
+    title: 'Client-Centric Approach',
+    description: 'Your goals are at the heart of our customized strategies. We listen, adapt, and execute with precision to exceed your expectations'
   },
   {
     icon: <TrendingUp />,
-    title: 'Results You Can Measure',
-    description: 'We prioritize ROI, delivering measurable outcomes that drive your success.'
+    title: 'Measurable Results',
+    description: 'Every action we take is rooted in driving tangible outcomes, ensuring your investment delivers maximum returns in a data-driven landscape.'
   },
   {
     icon: <Globe />,
-    title: 'Global Reach',
-    description: 'Our solutions connect you with audiences worldwide, expanding your business opportunities.'
+    title: 'Enduring Partnerships',
+    description: 'More than just a service provider, we’re your trusted partner in long-term digital success, walking with you every step of the way'
   }
 ];
 
@@ -94,7 +94,7 @@ const FeatureCard = ({ icon, title, description, index }) => {
   );
 };
 
-const Features = () => {
+const Features = React.forwardRef((props , ref)  => {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
   
@@ -107,7 +107,8 @@ const Features = () => {
       >
         <div className="title-wrapper">
           <h2>
-            <span className="highlight">What</span> Makes Us Different
+            <span className="highlight">What</span> Sets Us Apart <br /> in the Digital World
+
           </h2>
         </div>
         
@@ -135,7 +136,7 @@ const Features = () => {
       </motion.div>
     </section>
   );
-};
+});
 
 export default Features;
 

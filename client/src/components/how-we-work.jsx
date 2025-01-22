@@ -1,31 +1,34 @@
 import { Rocket, Target, Users, Award } from 'lucide-react'
 import '../styles/how-we-work.css';
+import React from 'react';
 
-export default function WhoWeAre() {
+ const WhoWeAre=React.forwardRef((props , ref) => {
   return (
     <section className="who-we-are">
       <div className="container">
         <div className="section-header">
-          <h2>Who We Are</h2>
+          <h2>Unlock the Secrets of Digital Success</h2>
           <p>
-            We are a dynamic digital agency committed to transforming businesses through innovative digital solutions and cutting-edge technology.
+          Step into a world where strategy meets innovation. Discover how we transform bold ideas into extraordinary results, making your digital future unstoppable.
           </p>
         </div>
 
         <div className="content-grid">
           <div className="content-column">
             <div className="info-card">
-              <Rocket className="icon" />
+              <Rocket className="icon" alt=" Rocket icon symbolizing bold growth and cutting-edge transformation." />
               <h3>Our Mission</h3>
               <p>
-                To empower businesses with digital transformation strategies that drive growth and innovation in the modern digital landscape.
+              We exist to ignite growth and transformation. With razor-sharp strategies and a relentless focus on innovation, we help businesses rise above the noise."
+
+
               </p>
             </div>
             <div className="info-card">
               <Target className="icon" />
               <h3>Our Vision</h3>
               <p>
-                To be the leading catalyst for digital excellence, setting new standards in technological innovation and digital success.
+              We see a future where [digital innovation] rules. Our vision is to empower businesses to rise, thrive, and lead in a fast-evolving digital world
               </p>
             </div>
           </div>
@@ -35,14 +38,14 @@ export default function WhoWeAre() {
               <Users className="icon" />
               <h3>Our Team</h3>
               <p>
-                A diverse group of passionate experts dedicated to delivering exceptional digital solutions and memorable client experiences.
+              Our diverse team of digital experts knows the power of collaboration. Together, we craft solutions that leave a lasting impression and deliver undeniable value
               </p>
             </div>
             <div className="info-card">
               <Award className="icon" />
-              <h3>Our Excellence</h3>
+              <h3>Our Promise  </h3>
               <p>
-                We pride ourselves on delivering high-quality solutions that exceed expectations and drive measurable results.
+              Our promise is simple: your success is our obsession. With [customized strategies] and [uncompromising commitment], we deliver results you can count on
               </p>
             </div>
           </div>
@@ -69,5 +72,6 @@ export default function WhoWeAre() {
       </div>
     </section>
   )
-}
+})
+export default WhoWeAre;
 

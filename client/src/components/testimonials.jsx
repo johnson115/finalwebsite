@@ -46,7 +46,7 @@ const TestimonialCard = ({ client, text, rating }) => (
   </motion.div>
 );
 
-const Testimonial = () => {
+const Testimonial = React.forwardRef((props , ref) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -75,7 +75,7 @@ const Testimonial = () => {
       </div>
     </section>
   );
-};
+});
 
 export default Testimonial;
 

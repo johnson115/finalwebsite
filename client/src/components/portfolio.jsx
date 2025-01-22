@@ -43,7 +43,7 @@ const portfolioItems = [
   },
 ];
 
-const FloatingIcons = () => {
+const FloatingIcons = ()  => {
   return (
     <div className="floating-icons">
       {[...Array(10)].map((_, i) => (
@@ -108,14 +108,14 @@ const SuccessGraph = () => {
 };
 
 const PortfolioItem = ({ title, category, description, index }) => {
-  const [ref, inView] = useInView({
+  const [refs, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
 
   return (
     <motion.div
-      ref={ref}
+      ref={refs}
       className="portfolio-item"
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -134,8 +134,8 @@ const PortfolioItem = ({ title, category, description, index }) => {
   );
 };
 
-const Portfolio = () => {
-  const [ref, inView] = useInView({
+const Portfolio = React.forwardRef((props , ref) => {
+  const [referance, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
@@ -146,7 +146,7 @@ const Portfolio = () => {
       <SuccessGraph />
       <div className="container">
         <motion.div
-          ref={ref}
+          ref={referance}
           className="section-header"
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -163,7 +163,7 @@ const Portfolio = () => {
       </div>
     </section>
   );
-};
+});
 
 export default Portfolio;
 

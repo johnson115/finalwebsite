@@ -73,7 +73,7 @@ const teamMembers = [
   },
 ];
 
-const MeetOurTeam = () => {
+const MeetOurTeam = React.forwardRef((props , ref) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -148,7 +148,7 @@ const MeetOurTeam = () => {
       </div>
     </section>
   );
-};
+});
 
 export default MeetOurTeam;
 

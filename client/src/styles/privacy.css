@@ -1,0 +1,93 @@
+/* Font Family */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Base Styling */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+.privacy-policy-container {
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 900px;
+  background-color: #F5F5F5;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+.privacy-header {
+  text-align: center;
+  background-color: #4B0082;
+  color: #FFFFFF;
+  padding: 20px;
+  border-radius: 8px 8px 0 0;
+  position: relative;
+}
+
+.privacy-icon {
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.privacy-section {
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #FFFFFF;
+  border-left: 5px solid #00CBA9;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.privacy-section:hover {
+  transform: translateY(-5px);
+}
+
+.privacy-section h2 {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: #4B0082;
+  margin-bottom: 10px;
+}
+
+.privacy-section p {
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.icon {
+  font-size: 24px;
+  color: #FFD700;
+  margin-right: 10px;
+}
+
+.privacy-footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #4B0082;
+  color: #FFFFFF;
+  border-radius: 0 0 8px 8px;
+}
+
+.footer-note {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #FFD700;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

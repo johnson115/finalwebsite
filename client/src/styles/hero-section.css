@@ -49,7 +49,7 @@
   
   .hero-tagline {
     color: #FFD700;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Playfair Display SC', serif;
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 2rem;
@@ -58,7 +58,7 @@
   
   .hero-citation {
     color: #FFFFFF;
-    font-family: 'Inter', sans-serif;
+    font-family: "Lora", serif;
     font-size: 1.25rem;
     line-height: 1.6;
     max-width: 800px;

@@ -3,12 +3,14 @@
   background: linear-gradient(to bottom , #4B0082 0%, #00CBA9 100%);
   position: relative;
   overflow: hidden;
+  font-family: 'Playfair Display SC', serif;
   min-height: 100vh;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  font-family: "Lora", serif;
   padding: 0 20px;
   position: relative;
   z-index: 2;
@@ -23,12 +25,16 @@
   font-size: 48px;
   font-weight: bold;
   color: #ffffff;
+  font-family: 'Playfair Display SC', serif;
   margin-bottom: 20px;
+  letter-spacing: 2px;
 }
 
 .section-header p {
   font-size: 18px;
   color: #ffd700;
+  font-family: 'Playfair Display SC', serif;
+  letter-spacing: 3px;
 }
 
 .portfolio-grid {

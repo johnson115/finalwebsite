@@ -35,8 +35,8 @@ const ServiceCard = ({ icon, title, description, index }) => {
   );
 };
 
-const Services = () => {
-  const [ref, inView] = useInView({
+const Services = React.forwardRef((props , ref) => {
+  const [refs, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
@@ -45,7 +45,7 @@ const Services = () => {
     <section className="services-section">
       <div className="container">
         <motion.h2
-          ref={ref}
+          ref={refs}
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
@@ -63,19 +63,19 @@ const Services = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
-          <h3>Ready to elevate your digital presence?</h3>
+          <h3>Ready to take your business to the next level ?</h3>
           <motion.button
             className="cta-button"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Get Started
+           Let's Get Started
           </motion.button>
         </motion.div>
       </div>
     </section>
   );
-};
+});
 
 export default Services;
 

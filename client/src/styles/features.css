@@ -42,6 +42,8 @@
   font-family: 'Outfit', sans-serif;
   font-size: 48px;
   font-weight: 800;
+  font-family: 'Playfair Display SC', serif;
+  letter-spacing: 2px;
   color: #ffffff;
   position: relative;
   display: inline-block;
@@ -106,6 +108,8 @@
   font-size: 24px;
   font-weight: 600;
   color: #333;
+  font-family: "Lora", serif;
+  letter-spacing: 1px;
   margin-bottom: 15px;
 }
 
@@ -113,6 +117,7 @@
   color: #666;
   line-height: 1.6;
   font-size: 16px;
+  font-family: "Lora", serif;
 }
 
 .cta-section {

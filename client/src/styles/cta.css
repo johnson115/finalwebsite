@@ -1,5 +1,5 @@
 .cta-container {
-    background: linear-gradient(135deg, #00CBA9, #4B0082);
+    background: linear-gradient(to left bottom, #00CBA9, #4B0082);
     padding: 60px 20px;
     text-align: center;
     color: #fff;
@@ -9,6 +9,7 @@
   }
   
   .cta-container h3 {
+    font-family: 'Playfair Display SC', serif;
     font-size: 28px;
     margin-bottom: 30px;
     font-weight: 700;
@@ -37,6 +38,7 @@
   @media (max-width: 768px) {
     .cta-container {
       padding: 40px 20px;
+      border-radius: 0%;
     }
   
     .cta-container h3 {

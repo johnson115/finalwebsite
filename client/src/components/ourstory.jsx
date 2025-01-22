@@ -4,11 +4,11 @@ import { useInView } from 'react-intersection-observer';
 import { BookOpen } from 'lucide-react';
 import '../styles/ourstory.css';
 
-const OurStory = () => {
+const OurStory = React.forwardRef((props , ref)  => {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
-  const [ref, inView] = useInView({
+  const [refs, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
@@ -51,7 +51,7 @@ const OurStory = () => {
   }, []);
 
   return (
-    <section className="our-story-section">
+    <section id="ourStory" className="our-story-section">
       <motion.div 
         className="container"
         style={{ y }}
@@ -66,7 +66,7 @@ const OurStory = () => {
           <h2>Our Story</h2>
         </motion.div>
 
-        <div className="content-wrapper" ref={ref}>
+        <div className="content-wrapper" ref={refs}>
           <motion.div 
             className="video-column"
             initial={{ opacity: 0, x: -50 }}
@@ -163,29 +163,30 @@ const OurStory = () => {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <h3>From Vision to Digital Excellence</h3>
+            <h3>Born from Struggles, Driven by Dreams</h3>
             <p>
-              Our journey began with a simple yet powerful vision: to transform the digital landscape for businesses of all sizes. Founded in 2021, our agency quickly became a beacon of innovation in the world of digital marketing and web development.
+            On August 19, 2024, two university students from Bizerte, Mahmoud sassi  and Iheb Tounsi, faced countless challenges—limited resources, sleepless nights, and moments of doubt .
             </p>
             <p>
-              We've grown from a small team of passionate individuals to a diverse group of experts, each bringing unique skills and perspectives to the table. Our collaborative approach and commitment to staying ahead of digital trends have allowed us to deliver exceptional results for our clients consistently.
+            Yet, through every hardship, they refused to give up on their dream. Digital Move Up was born not just from an idea, but from perseverance and the unwavering belief that success is built, not given.
+
             </p>
             <p>
-              Today, we're proud to have worked with a wide range of clients, from local startups to global brands. Our story is one of continuous learning, adaptation, and growth - values that we bring to every project we undertake.
+            Today, their story is proof that struggles can shape something extraordinary. Follow us on Instagram, and we promise you’ll find more than a story—you’ll find inspiration, resilience, and the belief that your dreams are possible too 
             </p>
             <motion.button 
               className="learn-more-btn"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Learn More About Us
+              Get Inspired on Instagram
             </motion.button>
           </motion.div>
         </div>
       </motion.div>
     </section>
   );
-};
+});
 
 export default OurStory;
 

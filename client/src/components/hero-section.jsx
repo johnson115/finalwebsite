@@ -1,6 +1,7 @@
-import '../styles/hero-section.css'
+import '../styles/hero-section.css';
+import React from 'react';
 
-export default function HeroSection() {
+ const HeroSection=React.forwardRef((props , ref) =>{
   return (
     <div className="hero-section">
       <div className="hero-background">
@@ -18,16 +19,17 @@ export default function HeroSection() {
             className="hero-image"
           />
         </div>
-        <h2 className="hero-tagline">The Future of Success, is Digital</h2>
+        <h2 className="hero-tagline">The Future of Business is Digital.</h2>
         <p className="hero-citation">
-          " Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat praesentium quia, itaque earum magni quos! Officia, maiores libero molestias ut autem, assumenda odio voluptatum asperiores iure nostrum, incidunt eligendi pariatur? "
+          " Digital Move Up specializes in innovative marketing and IT solutions, from SEO to email marketing, empowering businesses to thrive in a digital-first world "
         </p>
         <div className="hero-buttons">
-          <button className="hero-button">Our Services</button>
-          <button className="hero-button">Contact us</button>
+          <button className="hero-button">Discover Our Solutions</button>
+          <button className="hero-button">Contact Us Today</button>
         </div>
       </div>
     </div>
   )
-}
+})
+export default HeroSection;
 

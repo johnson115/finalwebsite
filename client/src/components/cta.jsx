@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import '../styles/cta.css';
 
-const CTA = () => {
+const CTA = React.forwardRef((props , ref) => {
   return (
     <motion.div
       className="cta-container"
@@ -29,7 +29,7 @@ const CTA = () => {
       </motion.button>
     </motion.div>
   );
-};
+});
 
 export default CTA;
 
