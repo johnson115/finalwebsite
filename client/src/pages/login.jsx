@@ -20,11 +20,6 @@ const Login = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
-
-
-
-
   const HandleSubmit = async (e) => {
     e.preventDefault();
     try {

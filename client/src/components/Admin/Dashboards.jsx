@@ -21,6 +21,7 @@ const Dashboards = () => {
   const [selectedCard, setSelectedCard] = React.useState(0);
   const [stats, setstats] = useState([]);
   const [views, setviews] = useState([]);
+  const [bce, setbce] = useState(0);
   const [ServiceClick, setServiceClick] = useState([]);
   const [ContactClick, setContactClick] = useState([]);
   const [ProjectClick, setProjectClick] = useState([]);
@@ -57,6 +58,21 @@ const Dashboards = () => {
     }
   };
 
+  const benefits = async () => {
+    try {
+      const response = await Post("/benefits", {
+        verif: true,
+      });
+      if (response.data.total) {
+        setbce(response.data.total);
+      } else {
+        setbce(0);
+      }
+    } catch (err) {
+      console.error("Error fetching data:", err);
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       await getstats();
@@ -67,6 +83,7 @@ const Dashboards = () => {
       setTeamClick(await getviews("Team Profile Click"));
       setContactClick(await getviews("Contact Click"));
       setProjectClick(await getviews("Project Click"));
+      benefits();
     };
     fetchData();
   }, []);
@@ -142,7 +159,45 @@ const Dashboards = () => {
                 </CardActionArea>
               </Card>
             </Grid>
+            
           ))}
+           <Grid item xs={12} sm={6} md={4} lg={3} key={bce}>
+              <Card
+                sx={{
+                  backgroundColor: "#DDFADD",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
+              >
+                <CardActionArea
+                  onClick={() => setSelectedCard(bce)}
+                  data-active={selectedCard === bce ? "" : undefined}
+                  sx={{
+                    height: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    "&[data-active]": {
+                      backgroundColor: "action.selected",
+                      "&:hover": {
+                        backgroundColor: "action.selectedHover",
+                      },
+                    },
+                  }}
+                >
+                  <CardContent sx={{ textAlign: "center" }}>
+                    <Typography variant="h4" component="div">
+                      {bce} $
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary">
+                      <b>Card Benefits</b>
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
         </Grid>
       </Box>
 
