@@ -3,7 +3,8 @@ const router = express.Router();
 const blog = require("./controllers/blogscontroller");
 const user = require("./controllers/auth/authController");
 const team = require("./controllers/teamcontroller");
-const stat = require("./controllers/statscontroller")
+const stat = require("./controllers/statscontroller");
+const tran = require("./controllers/transactionscontroller");
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 
@@ -32,5 +33,10 @@ router.route("/add").post(stat.add);
 router.route("/getstats").post(stat.getStats);
 router.route("/views").post(stat.dash);
 
+//transaction routes
+router.route("/addtransaction").post(tran.add);
+router.route("/alltransactions").post(tran.getall);
+router.route("/sold").post(tran.sold);
+router.route("/benefits").post(tran.totalBenefits);
 
 module.exports = router;

@@ -107,15 +107,7 @@ code {
   padding: 10px;
 }
 
-.card__side__photo {
-  width: 1.4cm;
-  height: 1.4cm;
-  position: absolute;
-  left: 12px;
-  bottom: 15px;
-  background: grey;
-  border-radius: 8%;
-}
+
 
 .card__side_front {
   background: linear-gradient(90deg, rgb(0, 0, 0) 0%, #242424 100%);
@@ -138,7 +130,7 @@ code {
 }
 
 .card__side__name-bank::after {
-  content: "Universal Bank";
+  content: "INTERNATIONAL CARD";
   position: absolute;
   font-size: 6px;
   top: 105%;
@@ -147,7 +139,6 @@ code {
 }
 
 .card__side__name-bank::before {
-  content: "₴";
   position: absolute;
   top: 0;
   right: 0;
@@ -220,10 +211,10 @@ code {
 }
 
 .card__side__number {
-  font-size: 18px;
+  font-size: 28px;
   font-family: Roboto Mono, sans-serif;
   color: #eeeeee;
-  margin: 45px 0px 15px 10px;
+  margin: 65px 0px 30px 30px;
 }
 
 .card__side__other-numbers {
@@ -242,14 +233,6 @@ code {
   font-size: 8px;
   left: 0;
   bottom: 60px;
-}
-
-.card__side__other-numbers_1::after {
-  content: "СТРОК";
-}
-
-.card__side__other-numbers_2::after {
-  content: "КОД";
 }
 
 .card__side__other-info {
