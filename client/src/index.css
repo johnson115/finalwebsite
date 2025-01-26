@@ -8,9 +8,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-<<<<<<< HEAD
-
-=======
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -279,4 +276,4 @@ code {
 .card:hover .card__side_back {
   transform: rotateY(0deg);
 }
->>>>>>> e2edfb0e56c42c7d2f69284ecc46eadb58cfa8e4
+

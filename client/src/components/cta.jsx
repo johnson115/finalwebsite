@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 import "../styles/cta.css";
 import Click from "../common/routes/click";
 
-<<<<<<< HEAD
+
 const CTA = React.forwardRef((props , ref) => {
-=======
-const CTA = () => {
+
+
   const add = async (type, on) => {
     try {
       await Click("/add", {
@@ -21,7 +21,7 @@ const CTA = () => {
     }
   };
 
->>>>>>> e2edfb0e56c42c7d2f69284ecc46eadb58cfa8e4
+
   return (
     <motion.div
       className="cta-container"

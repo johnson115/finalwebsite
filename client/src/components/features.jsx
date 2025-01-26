@@ -8,7 +8,6 @@ import Click from "../common/routes/click";
 const features = [
   {
     icon: <Lightbulb />,
-<<<<<<< HEAD
     title: 'Innovative Solutions',
     description: 'Our forward-thinking digital strategies empower your brand to rise above the competition, delivering fresh ideas that drive lasting results.'
   },
@@ -37,43 +36,7 @@ const features = [
     title: 'Enduring Partnerships',
     description: 'More than just a service provider, we’re your trusted partner in long-term digital success, walking with you every step of the way'
   }
-=======
-    title: "Innovative Solutions",
-    description:
-      "We bring fresh ideas to the table, helping you stand out in the competitive digital space.",
-  },
-  {
-    icon: <Rocket />,
-    title: "Proven Expertise",
-    description:
-      "With over 2 years of experience, we've helped businesses thrive through tailored strategies.",
-  },
-  {
-    icon: <Zap />,
-    title: "Fast Turnaround",
-    description:
-      "Our efficient workflows ensure your project is completed on time, every time.",
-  },
-  {
-    icon: <Users />,
-    title: "Client-Centric Focus",
-    description:
-      "We value collaboration and keep you informed at every step of the process.",
-  },
-  {
-    icon: <TrendingUp />,
-    title: "Results You Can Measure",
-    description:
-      "We prioritize ROI, delivering measurable outcomes that drive your success.",
-  },
-  {
-    icon: <Globe />,
-    title: "Global Reach",
-    description:
-      "Our solutions connect you with audiences worldwide, expanding your business opportunities.",
-  },
->>>>>>> e2edfb0e56c42c7d2f69284ecc46eadb58cfa8e4
-];
+]
 
 const AnimatedBackground = () => {
   return (

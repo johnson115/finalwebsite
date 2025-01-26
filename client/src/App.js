@@ -1,32 +1,34 @@
-<<<<<<< HEAD
-import React, { useRef } from "react"
-import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Navbar from "./components/navbar"
-import HeroSection from "./components/hero-section"
-import HowWeWork from "./components/how-we-work"
-import OurStory from "./components/ourstory"
-import MeetOurTeam from "./components/team"
-import Services from "./components/services"
-import Portfolio from "./components/portfolio"
-import Features from "./components/features"
-import Testimonial from "./components/testimonials"
-import CTA from "./components/cta"
-import Contact from "./components/Contact"
-import Footer from "./components/Footer"
-import PrivacyPolicy from "./components/Privacy&policy"
-import BlogPage from "./pages/Blogs"
-
+import React, { useRef, useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Navbar from "./components/navbar";
+import HeroSection from "./components/hero-section";
+import HowWeWork from "./components/how-we-work";
+import OurStory from "./components/ourstory";
+import MeetOurTeam from "./components/team";
+import Services from "./components/services";
+import Portfolio from "./components/portfolio";
+import Features from "./components/features";
+import Testimonial from "./components/testimonials";
+import CTA from "./components/cta";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+import PrivacyPolicy from "./components/Privacy&policy";
+import BlogPage from "./pages/Blogs";
+import Post from "./common/routes/post";
+import Cookies from "js-cookie";
+import Admin from "./pages/admin";
+import Login from "./pages/login";
 function App() {
-  const heroRef = useRef(null)
-  const howWeWorkRef = useRef(null)
-  const ourStoryRef = useRef(null)
-  const teamRef = useRef(null)
-  const servicesRef = useRef(null)
-  const portfolioRef = useRef(null)
-  const featuresRef = useRef(null)
-  const testimonialRef = useRef(null)
-  const ctaRef = useRef(null)
-  const contactRef = useRef(null)
+  const heroRef = useRef(null);
+  const howWeWorkRef = useRef(null);
+  const ourStoryRef = useRef(null);
+  const teamRef = useRef(null);
+  const servicesRef = useRef(null);
+  const portfolioRef = useRef(null);
+  const featuresRef = useRef(null);
+  const testimonialRef = useRef(null);
+  const ctaRef = useRef(null);
+  const contactRef = useRef(null);
 
   const refs = {
     hero: heroRef,
@@ -39,16 +41,46 @@ function App() {
     testimonial: testimonialRef,
     cta: ctaRef,
     contact: contactRef,
-  }
+  };
+
+  const AdminCheck = () => {
+    const [isAdmin, setIsAdmin] = useState(null);
+
+    useEffect(() => {
+      const checkAdmin = async () => {
+        const token = Cookies.get("token");
+        if (!token) {
+          setIsAdmin(false);
+          return;
+        }
+
+        try {
+          const resp = await Post("/verif", { token });
+          if (resp.status !== 200) {
+            setIsAdmin(false);
+          } else {
+            setIsAdmin(true);
+          }
+        } catch (error) {
+          console.error(error);
+          setIsAdmin(false);
+        }
+      };
+
+      checkAdmin();
+    }, []);
+
+    return isAdmin ? <Admin /> : <Login />;
+  };
 
   return (
     <BrowserRouter>
-      <Navbar refs={refs} />
       <Routes>
         <Route
           path="/"
           element={
             <>
+              <Navbar refs={refs} />
               <div ref={heroRef} id="hero">
                 <HeroSection />
               </div>
@@ -79,67 +111,35 @@ function App() {
               <div ref={contactRef} id="contact">
                 <Contact />
               </div>
+              <Footer />
             </>
           }
         />
-        <Route path="/privacy&policy" element={<PrivacyPolicy/>}/>
-        <Route path="/blogs" element={<BlogPage/>}/>
+        <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={<AdminCheck />} />
+        <Route
+          path="/privacy&policy"
+          element={
+            <>
+              <Navbar refs={refs} />
+              <PrivacyPolicy />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/blogs"
+          element={
+            <>
+              <Navbar refs={refs} />
+              <BlogPage />
+              <Footer />
+            </>
+          }
+        />
       </Routes>
-      <Footer/>
     </BrowserRouter>
-  )
-}
-
-export default App
-
-=======
-import { useEffect } from "react";
-import CTA from "./components/cta";
-import Features from "./components/features";
-import HeroSection from "./components/hero-section";
-import HowWeWork from "./components/how-we-work";
-import Navbar from "./components/navbar";
-import OurStory from "./components/ourstory";
-import Portfolio from "./components/portfolio";
-import Services from "./components/services";
-import MeetOurTeam from "./components/team";
-import Testimonial from "./components/testimonials";
-import Click from "./common/routes/click";
-
-function App() {
-  useEffect(() => {
-    const addVisit = async () => {
-      try {
-        await Click("/add", {
-          type: "view",
-          on: "Main Page View",
-          nb: 1,
-        });
-
-        console.log("Visit added successfully.");
-      } catch (error) {
-        console.error("Error adding visit:", error.message);
-      }
-    };
-
-    addVisit();
-  }, []);
-
-  return (
-    <>
-      <Navbar />
-      <HeroSection />
-      <HowWeWork />
-      <OurStory />
-      <MeetOurTeam />
-      <Services />
-      <Portfolio />
-      <Features />
-      <Testimonial />
-      <CTA />
-    </>
   );
 }
 
 export default App;
->>>>>>> e2edfb0e56c42c7d2f69284ecc46eadb58cfa8e4

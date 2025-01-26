@@ -74,12 +74,8 @@ const teamMembers = [
   },
 ];
 
-<<<<<<< HEAD
+
 const MeetOurTeam = React.forwardRef((props , ref) => {
-=======
-const MeetOurTeam = () => {
-
-
 
   const add = async (type,on) => {
     try {
@@ -97,8 +93,6 @@ const MeetOurTeam = () => {
 
 
 
-
->>>>>>> e2edfb0e56c42c7d2f69284ecc46eadb58cfa8e4
   const settings = {
     dots: true,
     infinite: true,
