@@ -1,83 +1,36 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import Slider from 'react-slick';
-import { Linkedin, DribbbleIcon as Behance } from 'lucide-react';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import '../styles/team.css';
-import Click from '../common/routes/click';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "../styles/team.css";
+import Click from "../common/routes/click";
+import Post from "../common/routes/post";
 
-const teamMembers = [
-  {
-    name: 'Heb Tounsi',
-    role: 'Founder / CEO',
-    link: 'https://www.facebook.com/ihebrayen.tounssy.14',
-    socialIcon: <Linkedin />,
-    socialLink: '',
-    image:require("../media/iheb.jpg")
-  },
-  {
-    name: 'Mahmoud Sassi',
-    role: 'Co-founder / Digital Marketing Specialist',
-    link: 'https://mahmoudsassi.digitalmoveup.tn/',
-    socialIcon: <Linkedin />,
-    socialLink: '',
-    image:require("../media/mahmoud.jpeg")
-  },
-  {
-    name: 'Ghassen Khedhry',
-    role: 'Digital Manager',
-    link: 'https://www.facebook.com/profile.php?id=100094531637741',
-    socialIcon: <Linkedin />,
-    socialLink: '',
-    image:require("../media/ghass.png")
-  },
-  {
-    name: 'Amen Allah Naamen',
-    role: 'Front-end Developer',
-    link: 'https://amennoomen.com/',
-    socialIcon: <Linkedin />,
-    socialLink: '',
-    image:require("../media/me.jpeg")
-  },
-  {
-    name: 'Hazem Saidani',
-    role: 'MERN Developer',
-    link: 'https://www.hazemsaidani.tn/',
-    socialIcon: <Linkedin />,
-    socialLink: '',
-    image:require("../media/hazem.jpeg")
-  },
-  {
-    name: 'Mohamed Lahbib Rahal',
-    role: 'Graphic Designer',
-    link: '',
-    socialIcon: <Behance />,
-    socialLink: '',
-    image:require("../media/ra7al.png")
-  },
-  {
-    name: 'Brinis Prod',
-    role: 'Video Production',
-    link: '',
-    socialIcon: <Linkedin />,
-    socialLink: '',
-    image:require("../media/brenis.jpg")
-  },
-  {
-    name: 'Olyzonu Prod',
-    role: 'Video Production',
-    link: '',
-    socialIcon: <Linkedin />,
-    socialLink: '',
-    image:require("../media/olyzonu.jpg")
-  },
-];
+const MeetOurTeam = React.forwardRef((props, ref) => {
+  const [teamMembers, setteam] = useState([]);
 
+  const fetchData = async () => {
+    try {
+      const response = await Post("/allteam", {
+        verif: true,
+      });
+      if (response.data.teams) {
+        setteam(response.data.teams);
+      } else {
+        console.log("No Members available.");
+        setteam([]);
+      }
+    } catch (err) {
+      console.error("Error fetching data:", err);
+    }
+  };
+  
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-const MeetOurTeam = React.forwardRef((props , ref) => {
-
-  const add = async (type,on) => {
+  const add = async (type, on) => {
     try {
       await Click("/add", {
         type: type,
@@ -90,8 +43,6 @@ const MeetOurTeam = React.forwardRef((props , ref) => {
       console.error("Error adding visit:", error.message);
     }
   };
-
-
 
   const settings = {
     dots: true,
@@ -143,21 +94,26 @@ const MeetOurTeam = React.forwardRef((props , ref) => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <div className="member-image">
-                {member.image !== '' ? (<img src={member.image} alt={member.name} width="200px"  /> ):(<div className="image-placeholder"></div>) }
-                
-                  
+                {member.image !== "" ? (
+                  <img src={member.image} alt={member.name} width="200px" />
+                ) : (
+                  <div className="image-placeholder"></div>
+                )}
               </div>
               <h3>{member.name}</h3>
-              <p>{member.role}</p>
+              <p>{member.post}</p>
               <div className="member-links">
-                {member.link && (
-                  <a href={member.link} onClick={()=>{add("Click","Team Profile Click")}} target="_blank" rel="noopener noreferrer" className="profile-link">
+                {member.profile && (
+                  <a
+                    href={member.profile}
+                    onClick={() => {
+                      add("Click", "Team Profile Click");
+                    }}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="profile-link"
+                  >
                     View Profile
-                  </a>
-                )}
-                {member.socialLink && (
-                  <a href={member.socialLink} target="_blank" rel="noopener noreferrer" className="social-icon">
-                    {member.socialIcon}
                   </a>
                 )}
               </div>
@@ -170,4 +126,3 @@ const MeetOurTeam = React.forwardRef((props , ref) => {
 });
 
 export default MeetOurTeam;
-

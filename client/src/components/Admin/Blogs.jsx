@@ -184,7 +184,7 @@ const Blogs = () => {
           />
           <TextField
             sx={{ width: "80%", mt: "20px" }}
-            label="Tag"
+            label="Hook"
             name="tag"
             variant="standard"
             color="secondary"

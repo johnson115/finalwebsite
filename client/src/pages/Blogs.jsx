@@ -5,6 +5,7 @@ import BlogList from '../components/BlogList'
 import "../styles/blog.css"
 
 const BlogPage = () => {
+  
   return (
     <div className="min-h-screen bg-white">
       <BlogHero  text={"blogs"} />

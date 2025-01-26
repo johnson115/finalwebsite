@@ -13,16 +13,16 @@ const BlogCard = ({ post }) => {
       <div className="blog-card-content">
         <h3>{post.title}</h3>
         <div className="blog-post-content">
-          <p>{post.excerpt}</p>
+          <p>{post.tag}</p>
           <div className={`hidden-content ${isExpanded ? "visible" : ""}`}>
-            {post.fullContent.map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-            ))}
+            
+              <p >{post.description}</p>
+           
           </div>
         </div>
         <div className="blog-card-meta">
-          <span>{post.date}</span>
-          <span>{post.readTime}</span>
+          <span>{new Date(post.createdAt).toLocaleString()}</span>
+          
         </div>
         <button onClick={toggleContent} className="read-more-button">
           {isExpanded ? "Read Less" : "Read More"}

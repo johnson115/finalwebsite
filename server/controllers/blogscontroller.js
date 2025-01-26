@@ -58,3 +58,22 @@ exports.deleteblog = async (req, res) => {
     res.status(500).json({ err: "Failed to delete blog", error });
   }
 };
+
+
+exports.last = async (req, res) => {
+  const verif = req.body;
+  if (verif) {
+    try {
+      const lastBlog = await blog.findOne().sort({ createdAt: -1 });
+      if (!lastBlog) {
+        return res.status(200).json({ msj: "no saved blogs" });
+      } else {
+        return res.status(200).json({ blog: lastBlog });
+      }
+    } catch (error) {
+      return res.status(400).json({ err: error.message });
+    }
+  } else {
+    return res.status(400).json({ err: "error occurred" });
+  }
+};

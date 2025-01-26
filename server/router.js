@@ -19,6 +19,7 @@ router.route("/change").post(user.changePass);
 router.route("/addblog").post(blog.addblog);
 router.route("/allblogs").post(blog.allblogs);
 router.route("/deleteblog/:id").delete(blog.deleteblog);
+router.route("/last").post(blog.last);
 
 //team routes
 router.route("/addteam").post(team.addteam);
