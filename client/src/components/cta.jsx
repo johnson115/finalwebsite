@@ -1,8 +1,27 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import '../styles/cta.css';
+import React from "react";
+import { motion } from "framer-motion";
+import "../styles/cta.css";
+import Click from "../common/routes/click";
 
+<<<<<<< HEAD
 const CTA = React.forwardRef((props , ref) => {
+=======
+const CTA = () => {
+  const add = async (type, on) => {
+    try {
+      await Click("/add", {
+        type: type,
+        on: on,
+        nb: 1,
+      });
+
+      console.log("Click added successfully.");
+    } catch (error) {
+      console.error("Error adding visit:", error.message);
+    }
+  };
+
+>>>>>>> e2edfb0e56c42c7d2f69284ecc46eadb58cfa8e4
   return (
     <motion.div
       className="cta-container"
@@ -18,6 +37,9 @@ const CTA = React.forwardRef((props , ref) => {
         Ready to transform your business? Let's work together.
       </motion.h3>
       <motion.button
+        onClick={() => {
+          add("Click", "Get Started Click");
+        }}
         className="cta-button"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
@@ -32,4 +54,3 @@ const CTA = React.forwardRef((props , ref) => {
 });
 
 export default CTA;
-

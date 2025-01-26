@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react"
 import { Menu, X, ChevronDown } from "lucide-react"
 import "../styles/navbar.css"
+=======
+import { useState } from 'react'
+import { Menu, X } from 'lucide-react'
+import '../styles/navbar.css'
+import Click from '../common/routes/click';
+>>>>>>> e2edfb0e56c42c7d2f69284ecc46eadb58cfa8e4
 
 export default function Navbar({ refs }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -34,6 +41,24 @@ export default function Navbar({ refs }) {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [refs])
 
+  const add = async (type,on) => {
+    try {
+      await Click("/add", {
+        type: type,
+        on: on,
+        nb: 1,
+      });
+
+      console.log("Click added successfully.");
+    } catch (error) {
+      console.error("Error adding visit:", error.message);
+    }
+  };
+
+
+
+
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -55,9 +80,9 @@ export default function Navbar({ refs }) {
             </a>
           </div>
 
-          {/* Desktop Menu */}
           <div className="navbar-menu-desktop">
             <div className="menu-items">
+<<<<<<< HEAD
               <a
                 href="#hero"
                 className={`menu-link ${activeSection === "hero" ? "active" : ""}`}
@@ -120,10 +145,18 @@ export default function Navbar({ refs }) {
               >
                 Contact
               </a>
+=======
+              <a href="/" className="menu-link active">Home</a>
+              <a href="/" className="menu-link" onClick={()=>{add("Click" , "About Click")}}>About</a>
+              <a href="/" className="menu-link" onClick={()=>{add("Click" , "Service Click")}}>Service</a>
+              <a href="/" className="menu-link" onClick={()=>{add("Click" , "Project Click")}}>Project</a>
+              <a href="/" className="menu-link">Pages +</a>
+              <a href="/" className="menu-link" onClick={()=>{add("Click" , "Contact Click")}}>Contact</a>
+>>>>>>> e2edfb0e56c42c7d2f69284ecc46eadb58cfa8e4
             </div>
           </div>
 
-          {/* Mobile menu button */}
+   
           <div className="navbar-mobile-button">
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="mobile-menu-button">
               
@@ -140,6 +173,7 @@ export default function Navbar({ refs }) {
       {/* Mobile menu */}
       <div className={`navbar-mobile ${isMenuOpen ? "open" : ""}`}>
         <div className="mobile-menu-items">
+<<<<<<< HEAD
           <a
             href="#hero"
             className={`mobile-menu-link ${activeSection === "hero" ? "active" : ""}`}
@@ -202,6 +236,14 @@ export default function Navbar({ refs }) {
           >
             Contact
           </a>
+=======
+          <a href="/" className="mobile-menu-link active">Home</a>
+          <a href="/" className="mobile-menu-link">About</a>
+          <a href="/" className="mobile-menu-link">Service</a>
+          <a href="/" className="mobile-menu-link">Project</a>
+          <a href="/" className="mobile-menu-link">Pages +</a>
+          <a href="/" className="mobile-menu-link">Contact</a>
+>>>>>>> e2edfb0e56c42c7d2f69284ecc46eadb58cfa8e4
         </div>
       </div>
     </nav>
