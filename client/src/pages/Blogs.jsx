@@ -7,7 +7,7 @@ import "../styles/blog.css"
 const BlogPage = () => {
   return (
     <div className="min-h-screen bg-white">
-      <BlogHero />
+      <BlogHero  text={"blogs"} />
       <FeaturedPost />
       <BlogList />
     </div>
