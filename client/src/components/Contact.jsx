@@ -26,7 +26,7 @@ const Contact = React.forwardRef((props, ref) => {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          access_key: 'YOUR_WEB3FORMS_ACCESS_KEY_HERE', // Replace this with your Web3Forms access key
+          access_key: '5286af30-3f1b-4a3d-8b60-53f81ab7c9a4',
           name: formData.name,
           email: formData.email,
           business_name: formData.businessName,
@@ -76,8 +76,8 @@ const Contact = React.forwardRef((props, ref) => {
       <div className="contact-container">
         <div className="contact-content">
           <div className="contact-header">
-            <h2 className="contact-title">We've been waiting for you.</h2>
-            <p className="contact-subtitle">We want to hear from you. Let us know how we can help.</p>
+            <h2 className="contact-title">Let's connect</h2>
+            <p className="contact-subtitle">Got a question, a project idea, or just want to say hi? We’d love to hear from you! Fill out the form below, and we’ll get back to you within 24 hours.</p>
           </div>
 
           <div className="form-container">

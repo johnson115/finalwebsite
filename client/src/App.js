@@ -6,7 +6,6 @@ import HowWeWork from "./components/how-we-work";
 import OurStory from "./components/ourstory";
 import MeetOurTeam from "./components/team";
 import Services from "./components/services";
-import Portfolio from "./components/portfolio";
 import Features from "./components/features";
 import Testimonial from "./components/testimonials";
 import CTA from "./components/cta";
@@ -96,9 +95,7 @@ function App() {
               <div ref={servicesRef} id="services">
                 <Services />
               </div>
-              <div ref={portfolioRef} id="portfolio">
-                <Portfolio />
-              </div>
+              
               <div ref={featuresRef} id="features">
                 <Features />
               </div>

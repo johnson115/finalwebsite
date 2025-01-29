@@ -4,12 +4,12 @@
     text-align: center;
     color: #fff;
     margin-top: 0;
-    border-radius: 0px 0px 20px 20px;
+    
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   }
   
   .cta-container h3 {
-    font-family: 'Playfair Display SC', serif;
+    font-family: "Tektur", serif;
     font-size: 28px;
     margin-bottom: 30px;
     font-weight: 700;

@@ -87,7 +87,7 @@ const Team = () => {
 
     try {
       const response = await axios.post(
-        "https://api.cloudinary.com/v1_1/dt9th2zfa/image/upload",
+        "https://api.cloudinary.com/v1_1/dag2bohce/image/upload",
         formData
       );
       return response.data.secure_url;

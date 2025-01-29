@@ -3,14 +3,13 @@ body {
   padding:0;
   background-color: #421887;
   width:100%;
-  font-family: 'Playfair Display SC', serif;
+  font-family: "Tektur", serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: "Tektur", serif;
 }
 
 
@@ -22,7 +21,7 @@ code {
   background: #3590ec;
   font-size: 15px;
   color: #ffffff;
-  font-family: inherit;
+  font-family: "Tektur", serif;
   font-weight: 500;
  }
  
@@ -118,7 +117,7 @@ code {
 }
 
 .card__side__name-bank {
-  font-family: Inter, sans-serif;
+  font-family: "Tektur", serif;
   font-weight: 500;
   position: relative;
   font-size: 22px;
@@ -164,7 +163,7 @@ code {
 
 .card__side__name-person {
   text-transform: uppercase;
-  font-family: Roboto Mono, sans-serif;
+  font-family: "Tektur", serif;
   font-size: 14px;
   margin-bottom: 10px;
   margin-left: 20px;
@@ -209,13 +208,13 @@ code {
 
 .card__side__number {
   font-size: 28px;
-  font-family: Roboto Mono, sans-serif;
+  font-family: "Tektur", serif;
   color: #eeeeee;
   margin: 65px 0px 30px 30px;
 }
 
 .card__side__other-numbers {
-  font-family: Roboto Mono, sans-serif;
+  font-family: "Tektur", serif;
   color: #eeeeee;
   display: block;
   margin-left: 10px;
@@ -236,7 +235,7 @@ code {
   color: #635c77;
   font-size: 4px;
   text-align: center;
-  font-family: Roboto Mono, sans-serif;
+  font-family: "Tektur", serif;
   position: absolute;
   bottom: 10px;
   left: 38px;
@@ -254,7 +253,7 @@ code {
   position: absolute;
   right: 12px;
   bottom: 25px;
-  font-family: Inter;
+  font-family: "Tektur", serif;
   color: #666666;
 }
 

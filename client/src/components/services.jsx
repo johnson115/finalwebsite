@@ -110,16 +110,19 @@ const Services = React.forwardRef((props , ref) => {
           transition={{ duration: 0.5, delay: 0.6 }}
         >
           <h3>Ready to take your business to the next level ?</h3>
-          <motion.button
-            className="cta-button"
-            onClick={() => {
-              add("Click", "Get Started Click");
-            }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-           Let's Get Started
-          </motion.button>
+          <a href="#contact">
+            <motion.button
+              className="cta-button"
+              onClick={() => {
+                add("Click", "Get Started Click");
+                
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+             Let's Get Started
+            </motion.button>
+          </a>
         </motion.div>
       </div>
     </section>

@@ -1,43 +1,44 @@
-import React, { useState, useEffect } from "react"
-import { Menu, X, ChevronDown } from "lucide-react"
-import "../styles/navbar.css"
-import '../styles/navbar.css'
-import Click from '../common/routes/click';
-
+import React, { useState, useEffect } from "react";
+import { Menu, X, ChevronDown } from "lucide-react";
+import "../styles/navbar.css";
+import "../styles/navbar.css";
+import Click from "../common/routes/click";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar({ refs }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState("")
+  const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   const scrollToSection = (sectionRef) => {
     if (sectionRef && sectionRef.current) {
-      sectionRef.current.scrollIntoView({ behavior: "smooth", block: "start" })
+      sectionRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-    setIsMenuOpen(false)
-  }
+    setIsMenuOpen(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = Object.keys(refs)
+      const sections = Object.keys(refs);
       const currentSection = sections.find((section) => {
-        const element = refs[section].current
+        const element = refs[section].current;
         if (element) {
-          const rect = element.getBoundingClientRect()
-          return rect.top <= 100 && rect.bottom >= 100
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
         }
-        return false
-      })
+        return false;
+      });
       if (currentSection) {
-        setActiveSection(currentSection)
+        setActiveSection(currentSection);
       }
-    }
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [refs])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [refs]);
 
-  const add = async (type,on) => {
+  const add = async (type, on) => {
     try {
       await Click("/add", {
         type: type,
@@ -51,9 +52,15 @@ export default function Navbar({ refs }) {
     }
   };
 
+  const handleNavClick = (target) => {
+    if (target === "blogs") {
+      navigate(`/${target}`);
+    } else {
+      navigate("/");
+      setTimeout(() => scrollToSection(target), 100);
 
-
-
+    }
+  };
 
   return (
     <nav className="navbar">
@@ -64,12 +71,15 @@ export default function Navbar({ refs }) {
               href="/"
               className="logo-container"
               onClick={(e) => {
-                e.preventDefault()
-                scrollToSection(refs.hero)
+                e.preventDefault();
+                scrollToSection(refs.hero);
               }}
             >
               <img
-                src={require("../media/Logo DG move up_Plan de travail 1 copie 11.png") || "/placeholder.svg"}
+                src={
+                  require("../media/Logo DG move up_Plan de travail 1 copie 11.png") ||
+                  "/placeholder.svg"
+                }
                 alt="Digital Move Platform logo"
                 className="logo-image"
               />
@@ -78,53 +88,68 @@ export default function Navbar({ refs }) {
 
           <div className="navbar-menu-desktop">
             <div className="menu-items">
-
               <a
                 href="#hero"
-                className={`menu-link ${activeSection === "hero" ? "active" : ""}`}
+                className={`menu-link ${
+                  activeSection === "hero" ? "active" : ""
+                }`}
                 onClick={(e) => {
-                  e.preventDefault()
-                  scrollToSection(refs.hero)
+                  e.preventDefault();
+                  scrollToSection(refs.hero);
+                  handleNavClick(refs.hero)
                 }}
               >
                 Home
               </a>
               <a
                 href="#ourStory"
-                className={`menu-link ${activeSection === "ourStory" ? "active" : ""}`}
+                className={`menu-link ${
+                  activeSection === "ourStory" ? "active" : ""
+                }`}
                 onClick={(e) => {
-                  e.preventDefault()
-                  scrollToSection(refs.ourStory)
-                  add("Click" , "About Click")
+                  e.preventDefault();
+                  scrollToSection(refs.ourStory);
+                  handleNavClick(refs.ourStory)
+                  add("Click", "About Click");
+                  
                 }}
               >
                 About
               </a>
               <a
                 href="#services"
-                className={`menu-link ${activeSection === "services" ? "active" : ""}`}
+                className={`menu-link ${
+                  activeSection === "services" ? "active" : ""
+                }`}
                 onClick={(e) => {
-                  e.preventDefault()
-                  scrollToSection(refs.services)
-                  add("Click" , "Service Click")
+                  e.preventDefault();
+                  scrollToSection(refs.services);
+                  handleNavClick(refs.services)
+                  add("Click", "Service Click");
                 }}
               >
                 Service
               </a>
               <a
                 href="#portfolio"
-                className={`menu-link ${activeSection === "portfolio" ? "active" : ""}`}
+                className={`menu-link ${
+                  activeSection === "portfolio" ? "active" : ""
+                }`}
                 onClick={(e) => {
-                  e.preventDefault()
-                  scrollToSection(refs.portfolio)
-                  add("Click" , "Project Click")
+                  e.preventDefault();
+                  scrollToSection(refs.portfolio);
+                  handleNavClick(refs.portfolio)
+                  add("Click", "Project Click");
                 }}
               >
                 Project
               </a>
               <div className="dropdown-container">
-                <button className="menu-link dropdown-button" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-                  Pages  <ChevronDown className="dropdown-icon" />
+                <button
+                  className="menu-link dropdown-button"
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                >
+                  Pages <ChevronDown className="dropdown-icon" />
                 </button>
                 {isDropdownOpen && (
                   <div className="dropdown-menu">
@@ -136,23 +161,26 @@ export default function Navbar({ refs }) {
               </div>
               <a
                 href="#contact"
-                className={`menu-link ${activeSection === "contact" ? "active" : ""}`}
+                className={`menu-link ${
+                  activeSection === "contact" ? "active" : ""
+                }`}
                 onClick={(e) => {
-                  e.preventDefault()
-                  scrollToSection(refs.contact)
-                  add("Click" , "Contact Click")
+                  e.preventDefault();
+                  scrollToSection(refs.contact);
+                  handleNavClick(refs.contact)
+                  add("Click", "Contact Click");
                 }}
               >
                 Contact
               </a>
-
             </div>
           </div>
 
-   
           <div className="navbar-mobile-button">
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="mobile-menu-button">
-              
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="mobile-menu-button"
+            >
               {isMenuOpen ? (
                 <X className="menu-icon" aria-hidden="true" />
               ) : (
@@ -166,49 +194,62 @@ export default function Navbar({ refs }) {
       {/* Mobile menu */}
       <div className={`navbar-mobile ${isMenuOpen ? "open" : ""}`}>
         <div className="mobile-menu-items">
-
           <a
             href="#hero"
-            className={`mobile-menu-link ${activeSection === "hero" ? "active" : ""}`}
+            className={`mobile-menu-link ${
+              activeSection === "hero" ? "active" : ""
+            }`}
             onClick={(e) => {
-              e.preventDefault()
-              scrollToSection(refs.hero)
+              e.preventDefault();
+              scrollToSection(refs.hero);
             }}
           >
             Home
           </a>
           <a
             href="#ourStory"
-            className={`mobile-menu-link ${activeSection === "ourStory" ? "active" : ""}`}
+            className={`mobile-menu-link ${
+              activeSection === "ourStory" ? "active" : ""
+            }`}
             onClick={(e) => {
-              e.preventDefault()
-              scrollToSection(refs.ourStory)
+              e.preventDefault();
+              scrollToSection(refs.ourStory);
+              add("Click", "About Click");
             }}
           >
             About
           </a>
           <a
             href="#services"
-            className={`mobile-menu-link ${activeSection === "services" ? "active" : ""}`}
+            className={`mobile-menu-link ${
+              activeSection === "services" ? "active" : ""
+            }`}
             onClick={(e) => {
-              e.preventDefault()
-              scrollToSection(refs.services)
+              e.preventDefault();
+              scrollToSection(refs.services);
+              add("Click", "Service Click");
             }}
           >
             Service
           </a>
           <a
             href="#portfolio"
-            className={`mobile-menu-link ${activeSection === "portfolio" ? "active" : ""}`}
+            className={`mobile-menu-link ${
+              activeSection === "portfolio" ? "active" : ""
+            }`}
             onClick={(e) => {
-              e.preventDefault()
-              scrollToSection(refs.portfolio)
+              e.preventDefault();
+              scrollToSection(refs.portfolio);
+              add("Click", "Project Click");
             }}
           >
             Project
           </a>
           <div className="mobile-dropdown">
-            <button className="mobile-menu-link" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+            <button
+              className="mobile-menu-link"
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            >
               Pages <ChevronDown className="dropdown-icon" />
             </button>
             {isDropdownOpen && (
@@ -221,25 +262,38 @@ export default function Navbar({ refs }) {
           </div>
           <a
             href="#contact"
-            className={`mobile-menu-link ${activeSection === "contact" ? "active" : ""}`}
+            className={`mobile-menu-link ${
+              activeSection === "contact" ? "active" : ""
+            }`}
             onClick={(e) => {
-              e.preventDefault()
-              scrollToSection(refs.contact)
+              e.preventDefault();
+              scrollToSection(refs.contact);
+              add("Click", "Contact Click");
             }}
           >
             Contact
           </a>
 
-          <a href="/" className="mobile-menu-link active">Home</a>
-          <a href="/" className="mobile-menu-link">About</a>
-          <a href="/" className="mobile-menu-link">Service</a>
-          <a href="/" className="mobile-menu-link">Project</a>
-          <a href="/" className="mobile-menu-link">Pages +</a>
-          <a href="/" className="mobile-menu-link">Contact</a>
-
+          <a href="/" className="mobile-menu-link active">
+            Home
+          </a>
+          <a href="/" className="mobile-menu-link">
+            About
+          </a>
+          <a href="/" className="mobile-menu-link">
+            Service
+          </a>
+          <a href="/" className="mobile-menu-link">
+            Project
+          </a>
+          <a href="/" className="mobile-menu-link">
+            Pages +
+          </a>
+          <a href="/" className="mobile-menu-link">
+            Contact
+          </a>
         </div>
       </div>
     </nav>
-  )
+  );
 }
-

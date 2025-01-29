@@ -36,19 +36,21 @@ const CTA = React.forwardRef((props , ref) => {
       >
         Ready to transform your business? Let's work together.
       </motion.h3>
-      <motion.button
-        onClick={() => {
-          add("Click", "Get Started Click");
-        }}
-        className="cta-button"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4, duration: 0.5 }}
-      >
-        Get Started Today
-      </motion.button>
+    <a href="tel:+1234567890">
+        <motion.button
+          onClick={() => {
+            add("Click", "Get Started Click");
+          }}
+          className="cta-button"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+        >
+          Get Started Today
+        </motion.button>
+    </a>
     </motion.div>
   );
 });

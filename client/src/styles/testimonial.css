@@ -13,7 +13,7 @@
   .testimonial-section h2 {
     font-size: 36px;
     text-align: center;
-    font-family: 'Playfair Display SC', serif;
+    font-family :"Tektur", serif;
     letter-spacing: 3px;
     margin-bottom: 50px;
     text-transform: uppercase;
@@ -24,7 +24,7 @@
   .testimonial-card {
     max-width: 100%;
     margin: 0 auto;
-    font-family: "Lora", serif;
+    font-family: "Tektur", serif;
     letter-spacing: 2px;
     padding: 40px;
     background: rgba(255, 255, 255, 0.1);

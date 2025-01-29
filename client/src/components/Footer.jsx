@@ -41,9 +41,8 @@ export default function Footer() {
                 className="footer-logo"
               />
             </div>
-            <h2 className="footer-heading">Ready For A Digital Transformation?</h2>
+            <h2 className="footer-heading">Got a question? Fill the form—we’ll reply in 24 hours!</h2>
           </div>
-
           {/* Quick Links */}
           <div className="footer-section">
             <h3 className="footer-title">Quick Links</h3>
@@ -54,9 +53,7 @@ export default function Footer() {
               <a href="#services" className="footer-link">
                 Services
               </a>
-              <a href="#portfolio" className="footer-link">
-                Portfolio
-              </a>
+              
               <a href="/blog" className="footer-link">
                 Blog
               </a>
