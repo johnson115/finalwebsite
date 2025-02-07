@@ -130,20 +130,7 @@ export default function Navbar({ refs }) {
               >
                 Service
               </a>
-              <a
-                href="#portfolio"
-                className={`menu-link ${
-                  activeSection === "portfolio" ? "active" : ""
-                }`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(refs.portfolio);
-                  handleNavClick(refs.portfolio)
-                  add("Click", "Project Click");
-                }}
-              >
-                Project
-              </a>
+             
               <div className="dropdown-container">
                 <button
                   className="menu-link dropdown-button"
@@ -202,6 +189,7 @@ export default function Navbar({ refs }) {
             onClick={(e) => {
               e.preventDefault();
               scrollToSection(refs.hero);
+              handleNavClick(refs.hero)
             }}
           >
             Home
@@ -215,6 +203,7 @@ export default function Navbar({ refs }) {
               e.preventDefault();
               scrollToSection(refs.ourStory);
               add("Click", "About Click");
+              handleNavClick(refs.ourStory)
             }}
           >
             About
@@ -227,24 +216,13 @@ export default function Navbar({ refs }) {
             onClick={(e) => {
               e.preventDefault();
               scrollToSection(refs.services);
+              handleNavClick(refs.services)
               add("Click", "Service Click");
             }}
           >
             Service
           </a>
-          <a
-            href="#portfolio"
-            className={`mobile-menu-link ${
-              activeSection === "portfolio" ? "active" : ""
-            }`}
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection(refs.portfolio);
-              add("Click", "Project Click");
-            }}
-          >
-            Project
-          </a>
+          
           <div className="mobile-dropdown">
             <button
               className="mobile-menu-link"
@@ -268,28 +246,10 @@ export default function Navbar({ refs }) {
             onClick={(e) => {
               e.preventDefault();
               scrollToSection(refs.contact);
+              handleNavClick(refs.contact)
               add("Click", "Contact Click");
             }}
           >
-            Contact
-          </a>
-
-          <a href="/" className="mobile-menu-link active">
-            Home
-          </a>
-          <a href="/" className="mobile-menu-link">
-            About
-          </a>
-          <a href="/" className="mobile-menu-link">
-            Service
-          </a>
-          <a href="/" className="mobile-menu-link">
-            Project
-          </a>
-          <a href="/" className="mobile-menu-link">
-            Pages +
-          </a>
-          <a href="/" className="mobile-menu-link">
             Contact
           </a>
         </div>
